@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="CodeForge Academy - Portal de estudos de programação">
+
+    <title>CodeForge Academy | Lorenzo Alves</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right,
+                rgba(0, 119, 255, 0.18),
+                transparent 35%),
+                #05070d;
+            color: #e9f3ff;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           VARIÁVEIS
+        ========================================================= */
+
+        :root {
+            --blue: #087cff;
+            --blue-light: #42a5ff;
+            --blue-dark: #063d80;
+
+            --black: #05070d;
+            --black2: #090d16;
+
+            --card: rgba(12, 19, 32, 0.88);
+            --card2: rgba(17, 28, 46, 0.92);
+
+            --border: rgba(69, 150, 255, 0.22);
+
+            --text: #eaf4ff;
+            --muted: #91a5bd;
+
+            --green: #00e676;
+            --yellow: #ffd740;
+            --red: #ff5252;
+        }
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #03050a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue-dark);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--blue);
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            background: rgba(3, 7, 15, 0.92);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid var(--border);
+
+            z-index: 999;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                var(--blue),
+                #0044ff
+            );
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 20px rgba(0, 119, 255, 0.45);
+        }
+
+        .logo span {
+            color: var(--blue-light);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        nav a {
+            padding: 9px 14px;
+            border-radius: 8px;
+
+            color: var(--muted);
+
+            transition: 0.25s;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(0, 119, 255, 0.13);
+        }
+
+        .menu-btn {
+            display: none;
+
+            background: none;
+            border: none;
+
+            color: white;
+            font-size: 25px;
+
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 120px 30px 70px;
+
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 950px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            border: 1px solid var(--border);
+            border-radius: 30px;
+
+            color: var(--blue-light);
+
+            background: rgba(0, 119, 255, 0.08);
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 85px);
+            line-height: 1;
+
+            margin-bottom: 25px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #55b5ff,
+                    #147eff
+                );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 760px;
+
+            margin: auto;
+
+            color: var(--muted);
+
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+
+            padding: 13px 22px;
+
+            border-radius: 9px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087cff,
+                    #0049bd
+                );
+
+            box-shadow:
+                0 8px 25px rgba(0, 119, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 35px rgba(0, 119, 255, 0.45);
+        }
+
+        .btn-secondary {
+            background: transparent;
+
+            color: var(--blue-light);
+
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 119, 255, 0.1);
+        }
+
+        /* =========================================================
+           SEÇÕES
+        ========================================================= */
+
+        section {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 80px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* =========================================================
+           CARDS DE LINGUAGENS
+        ========================================================= */
+
+        .languages {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 20px;
+        }
+
+        .language-card {
+            position: relative;
+
+            padding: 25px;
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            overflow: hidden;
+        }
+
+        .language-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--blue),
+                    transparent
+                );
+        }
+
+        .language-card:hover {
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(40, 145, 255, 0.55);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .language-icon {
+            font-size: 45px;
+
+            margin-bottom: 15px;
+        }
+
+        .language-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .language-card p {
+            color: var(--muted);
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+        .progress-container {
+            height: 6px;
+
+            background: #111a28;
+
+            border-radius: 10px;
+
+            margin-top: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #006eff,
+                    #4db5ff
+                );
+
+            width: 0%;
+
+            transition: width 0.5s;
+        }
+
+        /* =========================================================
+           MODAL / TUTORIAL
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.82);
+
+            backdrop-filter: blur(10px);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(1100px, 100%);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0b1422,
+                    #05080f
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            position: relative;
+
+            box-shadow:
+                0 30px 100px rgba(0, 0, 0, 0.7);
+        }
+
+        .close {
+            position: absolute;
+
+            top: 15px;
+            right: 20px;
+
+            border: none;
+
+            background: none;
+
+            color: white;
+
+            font-size: 30px;
+
+            cursor: pointer;
+        }
+
+        .tutorial-header {
+            margin-bottom: 30px;
+
+            padding-right: 40px;
+        }
+
+        .tutorial-header h2 {
+            font-size: 35px;
+
+            color: var(--blue-light);
+        }
+
+        .tutorial-header p {
+            margin-top: 10px;
+
+            color: var(--muted);
+        }
+
+        .topic {
+            margin-bottom: 35px;
+
+            padding: 22px;
+
+            background:
+                rgba(5, 12, 23, 0.8);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 13px;
+        }
+
+        .topic h3 {
+            color: white;
+
+            margin-bottom: 12px;
+        }
+
+        .topic p {
+            color: #b6c6d8;
+
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+           CÓDIGO
+        ========================================================= */
+
+        .code-wrapper {
+            position: relative;
+
+            margin-top: 15px;
+        }
+
+        pre {
+            background: #020409;
+
+            border:
+                1px solid #16243a;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            overflow-x: auto;
+
+            color: #9dd4ff;
+
+            line-height: 1.6;
+
+            font-family:
+                Consolas,
+                monospace;
+        }
+
+        .copy-btn {
+            position: absolute;
+
+            right: 10px;
+            top: 10px;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 6px;
+
+            background: #0c4d91;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: var(--blue);
+        }
+
+        /* =========================================================
+           VÍDEO
+        ========================================================= */
+
+        .video-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-thumbnail {
+            position: relative;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.4s;
+        }
+
+        .video-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .play {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(0, 119, 255, 0.9);
+
+            border-radius: 50%;
+
+            font-size: 24px;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .video-info p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================================================
+           PERFIL
+        ========================================================= */
+
+        .profile {
+            display: grid;
+
+            grid-template-columns: 180px 1fr;
+
+            gap: 35px;
+
+            align-items: center;
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            padding: 35px;
+
+            border-radius: 18px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #006eff,
+                    #021b38
+                );
+
+            border:
+                3px solid rgba(74, 167, 255, 0.5);
+
+            font-size: 55px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 0 40px rgba(0, 119, 255, 0.3);
+        }
+
+        .profile-info h2 {
+            margin-bottom: 10px;
+        }
+
+        .profile-info .role {
+            color: var(--blue-light);
+
+            margin-bottom: 15px;
+        }
+
+        .profile-info p {
+            color: var(--muted);
+
+            line-height: 1.7;
+        }
+
+        .credentials {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .credential {
+            padding: 8px 12px;
+
+            background:
+                rgba(0, 119, 255, 0.1);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 20px;
+
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           BUSCA
+        ========================================================= */
+
+        .search-box {
+            max-width: 700px;
+
+            margin:
+                0 auto 35px;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 15px 18px;
+
+            background: #080e18;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 10px;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        .search-box input:focus {
+            border-color: var(--blue);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            border-top:
+                1px solid var(--border);
+
+            background: #03050a;
+
+            padding: 40px 25px;
+
+            text-align: center;
+        }
+
+        footer h3 {
+            color: var(--blue-light);
+
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #8dbfff;
+        }
+
+        /* =========================================================
+           NOTIFICAÇÃO
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            background:
+                #0d1e32;
+
+            border:
+                1px solid var(--blue);
+
+            color: white;
+
+            padding: 13px 18px;
+
+            border-radius: 9px;
+
+            transform:
+                translateY(100px);
+
+            opacity: 0;
+
+            transition: 0.3s;
+
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform:
+                translateY(0);
+
+            opacity: 1;
+        }
+
+        /* =========================================================
+           RESPONSIVO
+        ========================================================= */
+
+        @media(max-width: 800px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                display: none;
+
+                position: absolute;
+
+                top: 70px;
+                left: 0;
+
+                width: 100%;
+
+                flex-direction: column;
+
+                background: #050a12;
+
+                padding: 15px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .profile {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =============================================================
+     HEADER
+============================================================= -->
+
+<header>
+
+    <a href="#inicio" class="logo">
+
+        <div class="logo-icon">
+            &lt;/&gt;
+        </div>
+
+        Code<span>Forge</span>
+
+    </a>
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()">
+
+        ☰
+
+    </button>
+
+    <nav id="navigation">
+
+        <a href="#inicio">Início</a>
+
+        <a href="#linguagens">Linguagens</a>
+
+        <a href="#videos">Vídeos</a>
+
+        <a href="#sobre">Sobre</a>
+
+    </nav>
+
+</header>
+
+
+<!-- =============================================================
+     HERO
+============================================================= -->
+
+<main>
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            PORTAL ACADÊMICO DE PROGRAMAÇÃO
+        </span>
+
+        <h1>
+            CodeForge Academy
+        </h1>
+
+        <p>
+
+            Um ambiente interativo para aprender
+            programação do zero ao avançado.
+
+            Explore Java, Python, HTML, CSS,
+            JavaScript e C++ através de conceitos,
+            exemplos práticos e vídeo-aulas.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="document
+                .getElementById('linguagens')
+                .scrollIntoView()">
+
+                Começar a estudar
+
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="document
+                .getElementById('videos')
+                .scrollIntoView()">
+
+                Ver vídeo-aulas
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     LINGUAGENS
+============================================================= -->
+
+<section id="linguagens">
+
+    <div class="section-title">
+
+        <h2>
+            Escolha sua linguagem
+        </h2>
+
+        <p>
+            Clique em uma linguagem para abrir o tutorial.
+        </p>
+
+    </div>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Pesquisar linguagem..."
+            onkeyup="searchLanguages()">
+
+    </div>
+
+    <div class="languages" id="languageGrid">
+
+
+        <!-- JAVA -->
+
+        <div
+            class="language-card"
+            data-name="java"
+            onclick="openTutorial('java')">
+
+            <div class="language-icon">
+                ☕
+            </div>
+
+            <h3>Java</h3>
+
+            <p>
+                Orientação a objetos,
+                variáveis, métodos,
+                classes, arrays,
+                exceções e muito mais.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-java">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PYTHON -->
+
+        <div
+            class="language-card"
+            data-name="python"
+            onclick="openTutorial('python')">
+
+            <div class="language-icon">
+                🐍
+            </div>
+
+            <h3>Python</h3>
+
+            <p>
+                Sintaxe simples,
+                variáveis, listas,
+                funções, loops,
+                POO e automação.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-python">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- HTML -->
+
+        <div
+            class="language-card"
+            data-name="html"
+            onclick="openTutorial('html')">
+
+            <div class="language-icon">
+                🌐
+            </div>
+
+            <h3>HTML</h3>
+
+            <p>
+                Estrutura de páginas,
+                elementos, formulários,
+                links, imagens,
+                tabelas e semântica.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-html">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- CSS -->
+
+        <div
+            class="language-card"
+            data-name="css"
+            onclick="openTutorial('css')">
+
+            <div class="language-icon">
+                🎨
+            </div>
+
+            <h3>CSS</h3>
+
+            <p>
+                Cores, layouts,
+                Flexbox, Grid,
+                responsividade,
+                animações e efeitos.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-css">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- JAVASCRIPT -->
+
+        <div
+            class="language-card"
+            data-name="javascript"
+            onclick="openTutorial('javascript')">
+
+            <div class="language-icon">
+                ⚡
+            </div>
+
+            <h3>JavaScript</h3>
+
+            <p>
+                Lógica, funções,
+                DOM, eventos,
+                arrays, objetos
+                e aplicações web.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-javascript">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- C++ -->
+
+        <div
+            class="language-card"
+            data-name="c++"
+            onclick="openTutorial('cpp')">
+
+            <div class="language-icon">
+                ⚙️
+            </div>
+
+            <h3>C++</h3>
+
+            <p>
+                Programação de alto desempenho,
+                classes, ponteiros,
+                STL, templates e POO.
+            </p>
+
+            <div class="progress-container">
+                <div
+                    class="progress"
+                    id="progress-cpp">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     VÍDEOS
+============================================================= -->
+
+<section id="videos">
+
+    <div class="section-title">
+
+        <h2>
+            Biblioteca de Vídeo-Aulas
+        </h2>
+
+        <p>
+            Aulas selecionadas para complementar
+            os tutoriais do portal.
+        </p>
+
+    </div>
+
+    <div class="video-grid">
+
+
+        <!-- JAVA -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://img.youtube.com/vi/XkOeL6cP8QY/maxresdefault.jpg"
+                    alt="Java">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Curso de Java
+                </h3>
+
+                <p>
+                    Fundamentos e programação
+                    orientada a objetos.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/results?search_query=maratona+java+devdojo"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PYTHON -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1000&q=80"
+                    alt="Python">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Curso de Python
+                </h3>
+
+                <p>
+                    Fundamentos, estruturas,
+                    funções e programação prática.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/results?search_query=curso+python+completo+portugues"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- HTML -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80"
+                    alt="HTML">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    HTML para iniciantes
+                </h3>
+
+                <p>
+                    Aprenda a estruturar
+                    páginas utilizando HTML.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/results?search_query=curso+html+completo+portugues"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- CSS -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://img.youtube.com/vi/w1J6gY40yMo/maxresdefault.jpg"
+                    alt="CSS">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Curso CSS Completo
+                </h3>
+
+                <p>
+                    CSS do básico ao avançado,
+                    incluindo Flexbox e responsividade.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/watch?v=w1J6gY40yMo"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- JAVASCRIPT -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=1000&q=80"
+                    alt="JavaScript">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    JavaScript
+                </h3>
+
+                <p>
+                    Variáveis, funções,
+                    DOM e programação web.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/results?search_query=curso+javascript+completo+portugues"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- C++ -->
+
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1000&q=80"
+                    alt="C++">
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    C++ para iniciantes
+                </h3>
+
+                <p>
+                    Fundamentos,
+                    estruturas, classes
+                    e programação orientada a objetos.
+                </p>
+
+                <a
+                    href="https://www.youtube.com/results?search_query=curso+c%2B%2B+completo+portugues"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    Assistir no YouTube
+
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =============================================================
+     PERFIL
+============================================================= -->
+
+<section id="sobre">
+
+    <div class="section-title">
+
+        <h2>
+            Sobre o Projeto
+        </h2>
+
+    </div>
+
+    <div class="profile">
+
+        <div class="avatar">
+            LA
+        </div>
+
+        <div class="profile-info">
+
+            <h2>
+                Lorenzo Alves
+            </h2>
+
+            <div class="role">
+                Aluno de Análise e Desenvolvimento de Sistemas
+            </div>
+
+            <p>
+
+                Criador do CodeForge Academy,
+                projeto acadêmico desenvolvido
+                com o objetivo de centralizar
+                materiais de estudo e conteúdos
+                relacionados à programação.
+
+            </p>
+
+            <div class="credentials">
+
+                <span class="credential">
+                    ADS
+                </span>
+
+                <span class="credential">
+                    IFFar
+                </span>
+
+                <span class="credential">
+                    Campus São Vicente do Sul
+                </span>
+
+                <span class="credential">
+                    Programação
+                </span>
+
+                <span class="credential">
+                    Desenvolvimento Web
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =============================================================
+     MODAL
+============================================================= -->
+
+<div
+    class="modal"
+    id="tutorialModal">
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeTutorial()">
+
+            ×
+
+        </button>
+
+        <div
+            id="tutorialContent">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     TOAST
+============================================================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Código copiado!
+
+</div>
+
+
+<!-- =============================================================
+     FOOTER
+============================================================= -->
+
+<footer>
+
+    <h3>
+        CodeForge Academy
+    </h3>
+
+    <p>
+        Projeto acadêmico desenvolvido por
+        Lorenzo Alves.
+    </p>
+
+    <div class="footer-links">
+
+        <a
+            href="https://developer.mozilla.org/pt-BR/"
+            target="_blank">
+
+            MDN Web Docs
+
+        </a>
+
+        <a
+            href="https://dev.java/"
+            target="_blank">
+
+            Java
+
+        </a>
+
+        <a
+            href="https://www.python.org/"
+            target="_blank">
+
+            Python
+
+        </a>
+
+        <a
+            href="https://isocpp.org/"
+            target="_blank">
+
+            C++
+
+        </a>
+
+        <a
+            href="https://www.youtube.com/"
+            target="_blank">
+
+            YouTube
+
+        </a>
+
+    </div>
+
+    <p>
+        © 2026 Lorenzo Alves — CodeForge Academy
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* =========================================================
+       DADOS DOS TUTORIAIS
+    ========================================================= */
+
+    const tutorials = {
+
+        java: {
+
+            title: "☕ Tutorial Completo de Java",
+
+            description:
+                "Java é uma linguagem orientada a objetos utilizada em aplicações desktop, web, Android, servidores e sistemas corporativos.",
+
+            topics: [
+
+                {
+                    title: "1. Primeiro programa",
+
+                    text:
+                        "Todo programa Java possui uma classe. A execução começa pelo método main.",
+
+                    code:
+`public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println("Olá, mundo!");
+
+    }
+
+}`
+
+                },
+
+                {
+                    title: "2. Variáveis",
+
+                    text:
+                        "Variáveis armazenam informações durante a execução do programa.",
+
+                    code:
+`int idade = 20;
+
+double altura = 1.75;
+
+String nome = "Lorenzo";
+
+boolean estudante = true;`
+
+                },
+
+                {
+                    title: "3. Entrada de dados",
+
+                    text:
+                        "A classe Scanner permite receber informações digitadas pelo usuário.",
+
+                    code:
+`import java.util.Scanner;
+
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Digite seu nome: ");
+
+String nome = scanner.nextLine();
+
+System.out.println("Olá " + nome);`
+
+                },
+
+                {
+                    title: "4. Condicionais",
+
+                    text:
+                        "Estruturas if e else permitem que o programa tome decisões.",
+
+                    code:
+`int idade = 18;
+
+if (idade >= 18) {
+
+    System.out.println("Maior de idade");
+
+} else {
+
+    System.out.println("Menor de idade");
+
+}`
+
+                },
+
+                {
+                    title: "5. Repetição",
+
+                    text:
+                        "O for permite executar um bloco de código várias vezes.",
+
+                    code:
+`for (int i = 0; i < 10; i++) {
+
+    System.out.println(i);
+
+}`
+
+                },
+
+                {
+                    title: "6. Arrays",
+
+                    text:
+                        "Arrays armazenam vários valores do mesmo tipo.",
+
+                    code:
+`int[] numeros = {
+    10,
+    20,
+    30,
+    40
+};
+
+System.out.println(numeros[0]);`
+
+                },
+
+                {
+                    title: "7. Métodos",
+
+                    text:
+                        "Métodos permitem organizar o código em blocos reutilizáveis.",
+
+                    code:
+`static int somar(int a, int b) {
+
+    return a + b;
+
+}
+
+int resultado = somar(10, 20);`
+
+                },
+
+                {
+                    title: "8. Orientação a Objetos",
+
+                    text:
+                        "Java utiliza fortemente classes e objetos.",
+
+                    code:
+`class Pessoa {
+
+    String nome;
+
+    int idade;
+
+    void apresentar() {
+
+        System.out.println(
+            "Meu nome é " + nome
+        );
+
+    }
+
+}`
+
+                }
+
+            ]
+
+        },
+
+
+        python: {
+
+            title: "🐍 Tutorial Completo de Python",
+
+            description:
+                "Python possui sintaxe simples e é utilizado em automação, web, ciência de dados, IA, scripts e diversas outras áreas.",
+
+            topics: [
+
+                {
+                    title: "1. Primeiro programa",
+
+                    text:
+                        "A função print() exibe informações no terminal.",
+
+                    code:
+`print("Olá, mundo!")`
+
+                },
+
+                {
+                    title: "2. Variáveis",
+
+                    text:
+                        "Python possui tipagem dinâmica.",
+
+                    code:
+`nome = "Lorenzo"
+
+idade = 20
+
+altura = 1.75
+
+estudante = True
+
+print(nome)`
+
+                },
+
+                {
+                    title: "3. Entrada de dados",
+
+                    text:
+                        "A função input() recebe informações do usuário.",
+
+                    code:
+`nome = input("Digite seu nome: ")
+
+print("Olá,", nome)`
+
+                },
+
+                {
+                    title: "4. Condicionais",
+
+                    text:
+                        "if, elif e else permitem controlar decisões.",
+
+                    code:
+`idade = 18
+
+if idade >= 18:
+
+    print("Maior de idade")
+
+else:
+
+    print("Menor de idade")`
+
+                },
+
+                {
+                    title: "5. Loops",
+
+                    text:
+                        "O for permite percorrer sequências.",
+
+                    code:
+`for numero in range(1, 11):
+
+    print(numero)`
+
+                },
+
+                {
+                    title: "6. Listas",
+
+                    text:
+                        "Listas armazenam múltiplos valores.",
+
+                    code:
+`linguagens = [
+    "Java",
+    "Python",
+    "C++"
+]
+
+print(linguagens[0])`
+
+                },
+
+                {
+                    title: "7. Funções",
+
+                    text:
+                        "Funções permitem reutilizar código.",
+
+                    code:
+`def somar(a, b):
+
+    return a + b
+
+resultado = somar(10, 20)
+
+print(resultado)`
+
+                },
+
+                {
+                    title: "8. Classes",
+
+                    text:
+                        "Python também possui programação orientada a objetos.",
+
+                    code:
+`class Pessoa:
+
+    def __init__(self, nome):
+
+        self.nome = nome
+
+    def apresentar(self):
+
+        print(
+            "Olá, meu nome é",
+            self.nome
+        )
+
+pessoa = Pessoa("Lorenzo")
+
+pessoa.apresentar()`
+
+                }
+
+            ]
+
+        },
+
+
+        html: {
+
+            title: "🌐 Tutorial Completo de HTML",
+
+            description:
+                "HTML é utilizado para estruturar o conteúdo de páginas web.",
+
+            topics: [
+
+                {
+                    title: "1. Estrutura básica",
+
+                    text:
+                        "Uma página HTML normalmente possui html, head e body.",
+
+                    code:
+`<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Minha página</title>
+
+</head>
+
+<body>
+
+    <h1>Olá, mundo!</h1>
+
+</body>
+
+</html>`
+
+                },
+
+                {
+                    title: "2. Títulos e parágrafos",
+
+                    text:
+                        "Use h1 até h6 para títulos e p para parágrafos.",
+
+                    code:
+`<h1>Título principal</h1>
+
+<h2>Subtítulo</h2>
+
+<p>
+    Este é um parágrafo.
+</p>`
+
+                },
+
+                {
+                    title: "3. Links",
+
+                    text:
+                        "A tag a cria hyperlinks.",
+
+                    code:
+`<a
+    href="https://www.google.com"
+    target="_blank">
+
+    Abrir Google
+
+</a>`
+
+                },
+
+                {
+                    title: "4. Imagens",
+
+                    text:
+                        "A tag img permite inserir imagens.",
+
+                    code:
+`<img
+    src="imagem.jpg"
+    alt="Descrição da imagem">`
+
+                },
+
+                {
+                    title: "5. Formulários",
+
+                    text:
+                        "Formulários permitem receber informações do usuário.",
+
+                    code:
+`<form>
+
+    <label>Nome:</label>
+
+    <input
+        type="text"
+        placeholder="Digite seu nome">
+
+    <button>
+        Enviar
+    </button>
+
+</form>`
+
+                },
+
+                {
+                    title: "6. Estrutura semântica",
+
+                    text:
+                        "Elementos semânticos tornam a estrutura mais organizada.",
+
+                    code:
+`<header>
+    Cabeçalho
+</header>
+
+<nav>
+    Menu
+</nav>
+
+<main>
+    Conteúdo
+</main>
+
+<footer>
+    Rodapé
+</footer>`
+
+                }
+
+            ]
+
+        },
+
+
+        css: {
+
+            title: "🎨 Tutorial Completo de CSS",
+
+            description:
+                "CSS controla a aparência, layout, cores, espaçamentos e responsividade das páginas.",
+
+            topics: [
+
+                {
+                    title: "1. CSS básico",
+
+                    text:
+                        "Podemos alterar a cor de um elemento utilizando color.",
+
+                    code:
+`h1 {
+
+    color: #008cff;
+
+}`
+
+                },
+
+                {
+                    title: "2. Background",
+
+                    text:
+                        "background controla o fundo dos elementos.",
+
+                    code:
+`body {
+
+    background-color: #05070d;
+
+}`
+
+                },
+
+                {
+                    title: "3. Classes",
+
+                    text:
+                        "Classes permitem aplicar estilos a vários elementos.",
+
+                    code:
+`.titulo {
+
+    color: blue;
+
+    font-size: 32px;
+
+}`
+
+                },
+
+                {
+                    title: "4. Flexbox",
+
+                    text:
+                        "Flexbox é uma das principais ferramentas para criação de layouts.",
+
+                    code:
+`.container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+}`
+
+                },
+
+                {
+                    title: "5. Grid",
+
+                    text:
+                        "CSS Grid permite construir layouts bidimensionais.",
+
+                    code:
+`.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}`
+
+                },
+
+                {
+                    title: "6. Responsividade",
+
+                    text:
+                        "Media queries permitem adaptar o site a diferentes telas.",
+
+                    code:
+`@media (max-width: 700px) {
+
+    .container {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}`
+
+                },
+
+                {
+                    title: "7. Animações",
+
+                    text:
+                        "CSS permite criar animações sem JavaScript.",
+
+                    code:
+`@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+.card {
+
+    animation:
+        aparecer 0.5s;
+
+}`
+
+                }
+
+            ]
+
+        },
+
+
+        javascript: {
+
+            title: "⚡ Tutorial Completo de JavaScript",
+
+            description:
+                "JavaScript adiciona comportamento e interatividade às páginas web.",
+
+            topics: [
+
+                {
+                    title: "1. Primeiro código",
+
+                    text:
+                        "console.log() envia informações para o console do navegador.",
+
+                    code:
+`console.log("Olá, JavaScript!");`
+
+                },
+
+                {
+                    title: "2. Variáveis",
+
+                    text:
+                        "Use let e const para declarar variáveis.",
+
+                    code:
+`let nome = "Lorenzo";
+
+const idade = 20;
+
+console.log(nome);`
+
+                },
+
+                {
+                    title: "3. Condicionais",
+
+                    text:
+                        "if e else controlam decisões.",
+
+                    code:
+`let idade = 18;
+
+if (idade >= 18) {
+
+    console.log(
+        "Maior de idade"
+    );
+
+} else {
+
+    console.log(
+        "Menor de idade"
+    );
+
+}`
+
+                },
+
+                {
+                    title: "4. Funções",
+
+                    text:
+                        "Funções agrupam instruções reutilizáveis.",
+
+                    code:
+`function somar(a, b) {
+
+    return a + b;
+
+}
+
+console.log(
+    somar(10, 20)
+);`
+
+                },
+
+                {
+                    title: "5. Arrays",
+
+                    text:
+                        "Arrays armazenam vários valores.",
+
+                    code:
+`const linguagens = [
+    "Java",
+    "Python",
+    "C++"
+];
+
+console.log(
+    linguagens[0]
+);`
+
+                },
+
+                {
+                    title: "6. DOM",
+
+                    text:
+                        "O DOM permite manipular elementos HTML através do JavaScript.",
+
+                    code:
+`const titulo =
+    document.querySelector("h1");
+
+titulo.textContent =
+    "Novo título";`
+
+                },
+
+                {
+                    title: "7. Eventos",
+
+                    text:
+                        "Eventos permitem responder às ações do usuário.",
+
+                    code:
+`const botao =
+    document.querySelector("button");
+
+botao.addEventListener(
+    "click",
+    function() {
+
+        alert(
+            "Botão clicado!"
+        );
+
+    }
+);`
+
+                }
+
+            ]
+
+        },
+
+
+        cpp: {
+
+            title: "⚙️ Tutorial Completo de C++",
+
+            description:
+                "C++ é uma linguagem poderosa utilizada em sistemas, jogos, engines, aplicações de alto desempenho e software de baixo nível.",
+
+            topics: [
+
+                {
+                    title: "1. Primeiro programa",
+
+                    text:
+                        "O programa começa pela função main().",
+
+                    code:
+`#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    cout
+        << "Olá, mundo!";
+
+    return 0;
+
+}`
+
+                },
+
+                {
+                    title: "2. Variáveis",
+
+                    text:
+                        "C++ possui tipagem estática.",
+
+                    code:
+`int idade = 20;
+
+double altura = 1.75;
+
+string nome = "Lorenzo";
+
+bool estudante = true;`
+
+                },
+
+                {
+                    title: "3. Condicionais",
+
+                    text:
+                        "if e else controlam decisões.",
+
+                    code:
+`int idade = 18;
+
+if (idade >= 18) {
+
+    cout
+        << "Maior de idade";
+
+} else {
+
+    cout
+        << "Menor de idade";
+
+}`
+
+                },
+
+                {
+                    title: "4. Loops",
+
+                    text:
+                        "O for permite repetir instruções.",
+
+                    code:
+`for (
+    int i = 0;
+    i < 10;
+    i++
+) {
+
+    cout
+        << i
+        << endl;
+
+}`
+
+                },
+
+                {
+                    title: "5. Funções",
+
+                    text:
+                        "Funções organizam e reutilizam código.",
+
+                    code:
+`int somar(
+    int a,
+    int b
+) {
+
+    return a + b;
+
+}
+
+int resultado =
+    somar(10, 20);`
+
+                },
+
+                {
+                    title: "6. Classes",
+
+                    text:
+                        "C++ suporta programação orientada a objetos.",
+
+                    code:
+`class Pessoa {
+
+public:
+
+    string nome;
+
+    void apresentar() {
+
+        cout
+            << "Olá "
+            << nome;
+
+    }
+
+};`
+
+                },
+
+                {
+                    title: "7. Vetores",
+
+                    text:
+                        "vector é uma estrutura dinâmica da STL.",
+
+                    code:
+`#include <vector>
+
+vector<int> numeros = {
+    10,
+    20,
+    30
+};
+
+cout
+    << numeros[0];`
+
+                }
+
+            ]
+
+        }
+
+    };
+
+
+    /* =========================================================
+       ABRIR TUTORIAL
+    ========================================================= */
+
+    function openTutorial(language) {
+
+        const tutorial =
+            tutorials[language];
+
+        if (!tutorial) return;
+
+        let html = `
+
+            <div class="tutorial-header">
+
+                <h2>
+                    ${tutorial.title}
+                </h2>
+
+                <p>
+                    ${tutorial.description}
+                </p>
+
+            </div>
+
+        `;
+
+
+        tutorial.topics.forEach(
+            (topic, index) => {
+
+                html += `
+
+                    <div class="topic">
+
+                        <h3>
+                            ${topic.title}
+                        </h3>
+
+                        <p>
+                            ${topic.text}
+                        </p>
+
+                        <div
+                            class="code-wrapper">
+
+                            <button
+                                class="copy-btn"
+                                onclick="copyCode(this)">
+
+                                Copiar
+
+                            </button>
+
+                            <pre><code>${escapeHTML(topic.code)}</code></pre>
+
+                        </div>
+
+                        <br>
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick="markProgress('${language}', ${index})">
+
+                            ✓ Marcar como estudado
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        html += `
+
+            <div class="topic">
+
+                <h3>
+                    📚 Próximos passos
+                </h3>
+
+                <p>
+
+                    Depois de dominar estes fundamentos,
+                    pratique criando projetos.
+
+                    Tente construir calculadoras,
+                    sistemas CRUD, APIs, jogos,
+                    sites responsivos e aplicações
+                    completas.
+
+                </p>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "tutorialContent"
+        ).innerHTML = html;
+
+
+        document.getElementById(
+            "tutorialModal"
+        ).classList.add("active");
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    /* =========================================================
+       FECHAR TUTORIAL
+    ========================================================= */
+
+    function closeTutorial() {
+
+        document.getElementById(
+            "tutorialModal"
+        ).classList.remove("active");
+
+        document.body.style.overflow =
+            "auto";
+
+    }
+
+
+    /* =========================================================
+       ESC
+    ========================================================= */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                closeTutorial();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       COPIAR CÓDIGO
+    ========================================================= */
+
+    function copyCode(button) {
+
+        const code =
+            button
+            .parentElement
+            .querySelector("code")
+            .innerText;
+
+        navigator.clipboard
+            .writeText(code)
+            .then(() => {
+
+                showToast(
+                    "Código copiado para a área de transferência!"
+                );
+
+            });
+
+    }
+
+
+    /* =========================================================
+       ESCAPAR HTML
+    ========================================================= */
+
+    function escapeHTML(text) {
+
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+    }
+
+
+    /* =========================================================
+       PROGRESSO
+    ========================================================= */
+
+    function markProgress(
+        language,
+        index
+    ) {
+
+        const key =
+            `progress_${language}`;
+
+        let progress =
+            JSON.parse(
+                localStorage.getItem(key)
+            ) || [];
+
+        if (!progress.includes(index)) {
+
+            progress.push(index);
+
+        }
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(progress)
+        );
+
+        updateProgress(language);
+
+        showToast(
+            "Conteúdo marcado como estudado!"
+        );
+
+    }
+
+
+    function updateProgress(language) {
+
+        const progress =
+            JSON.parse(
+                localStorage.getItem(
+                    `progress_${language}`
+                )
+            ) || [];
+
+        const total =
+            tutorials[language].topics.length;
+
+        const percentage =
+            Math.round(
+                (progress.length / total) * 100
+            );
+
+        const bar =
+            document.getElementById(
+                `progress-${language}`
+            );
+
+        if (bar) {
+
+            bar.style.width =
+                percentage + "%";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       CARREGAR PROGRESSO
+    ========================================================= */
+
+    Object.keys(tutorials)
+        .forEach(
+            language =>
+                updateProgress(language)
+        );
+
+
+    /* =========================================================
+       PESQUISA
+    ========================================================= */
+
+    function searchLanguages() {
+
+        const value =
+            document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase();
+
+        const cards =
+            document.querySelectorAll(
+                ".language-card"
+            );
+
+        cards.forEach(card => {
+
+            const name =
+                card.dataset.name;
+
+            if (
+                name.includes(value)
+            ) {
+
+                card.style.display =
+                    "block";
+
+            } else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================================
+       MENU MOBILE
+    ========================================================= */
+
+    function toggleMenu() {
+
+        document
+            .getElementById("navigation")
+            .classList.toggle("active");
+
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+        toast.textContent =
+            message;
+
+        toast.classList.add(
+            "show"
+        );
+
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 3000);
+
+    }
+
+
+    /* =========================================================
+       FECHAR MODAL CLICANDO FORA
+    ========================================================= */
+
+    document
+        .getElementById("tutorialModal")
+        .addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === this
+                ) {
+
+                    closeTutorial();
+
+                }
+
+            }
+        );
+
+
+</script>
+
+</body>
+</html>
